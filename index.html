@@ -358,7 +358,7 @@ footer {
 
 <div class="download-heading"><p class="eyebrow">СОХРАНИТЕ СВОЙ РЕЗУЛЬТАТ</p><h2>Всё под рукой.<br>Даже на бумаге.</h2></div>
 <div class="actions"><button id="download" type="button">Скачать PDF с моими отметками</button></div>
-<p class="help">PDF сохранит галочки на момент скачивания. После изменения списка скачайте его заново. В другом браузере или после очистки данных отметки не восстановятся.</p>
+<p class="help">PDF сохранит текущие галочки. В скачанном файле их тоже можно менять — сохраните изменения в PDF-приложении. Изменения в PDF не переносятся на сайт. В другом браузере или после очистки данных отметки не восстановятся.</p>
 <p id="status" role="status" aria-live="polite"></p>
 
 <div class="done-note">
@@ -373,7 +373,7 @@ footer {
 
 <script src="assets/pdf-lib.min.js"></script>
 <script src="assets/template.js"></script>
-<script src="assets/export.js?v=5"></script>
+<script src="assets/export.js?v=6"></script>
 <script>
 (function () {
   var boxes = Array.prototype.slice.call(document.querySelectorAll('.item input'));

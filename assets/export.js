@@ -9,14 +9,20 @@ async function createChecklistPdf(template, selected) {
   pdf.catalog.delete(PDFLib.PDFName.of('AcroForm'));
   const pages = pdf.getPages();
   pdf.setTitle('Checklist — ' + selected.length + ' / 45 — ' + new Date().toISOString());
-  for (const id of new Set(selected)) {
-    const point = CHECKLIST_POSITIONS[id];
-    if (!point) continue;
+  const form = pdf.getForm();
+  const checked = new Set(selected);
+  for (const [id, point] of Object.entries(CHECKLIST_POSITIONS)) {
     const {page, x, y} = point;
-    pages[page].drawRectangle({x:x-0.4,y:y-0.4,width:10,height:10,color:PDFLib.rgb(0.12,0.34,0.27)});
-    const color = PDFLib.rgb(1, 1, 1);
-    pages[page].drawLine({start:{x:x+1.5,y:y+4.4},end:{x:x+3.7,y:y+2},thickness:1.5,color});
-    pages[page].drawLine({start:{x:x+3.7,y:y+2},end:{x:x+7.8,y:y+7.5},thickness:1.5,color});
+    const field = form.createCheckBox(id);
+    field.addToPage(pages[page], {
+      x: x - 0.4, y: y - 0.4, width: 10, height: 10,
+      borderWidth: 0.8, borderColor: PDFLib.rgb(0.12, 0.34, 0.27),
+      backgroundColor: PDFLib.rgb(1, 1, 1),
+      textColor: PDFLib.rgb(0.12, 0.34, 0.27),
+    });
+    if (checked.has(id)) field.check();
+    else field.uncheck();
   }
+  form.updateFieldAppearances();
   return await pdf.save();
 }
