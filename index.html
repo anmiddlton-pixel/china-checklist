@@ -1,0 +1,438 @@
+<!doctype html><html lang="ru"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Документы в китайский вуз</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@600&display=swap">
+<style>
+/* Layout: single reading column, stages stacked as a dossier; sticky progress rail on top */
+:root {
+  --paper:      #f6f6f2;
+  --surface:    #ffffff;
+  --ink:        #1e2421;
+  --ink-soft:   #5d665f;
+  --line:       #dedfd7;
+  --accent:     #2d6a5c;
+  --accent-dim: #d9e7e2;
+  --alert:      #a8392b;
+  --font-head:  "IBM Plex Serif", Georgia, serif;
+  --font-body:  "IBM Plex Sans", system-ui, sans-serif;
+  --font-code:  "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:      #131714;
+    --surface:    #1b211d;
+    --ink:        #e7eae5;
+    --ink-soft:   #97a09a;
+    --line:       #2a312c;
+    --accent:     #63ad99;
+    --accent-dim: #22352f;
+    --alert:      #e07a68;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper:      #131714;
+  --surface:    #1b211d;
+  --ink:        #e7eae5;
+  --ink-soft:   #97a09a;
+  --line:       #2a312c;
+  --accent:     #63ad99;
+  --accent-dim: #22352f;
+  --alert:      #e07a68;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.wrap {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding-inline: 20px;
+  padding-block: 0 4rem;
+}
+
+/* ---- progress rail ---- */
+.rail {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  padding-block: .7rem .6rem;
+  margin-bottom: 2rem;
+}
+.rail-inner {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding-inline: 20px;
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+}
+.count {
+  font-family: var(--font-code);
+  font-size: .82rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.count b { color: var(--accent); font-weight: 500; }
+.bar {
+  flex: 1;
+  min-width: 0;
+  height: 5px;
+  background: var(--line);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.bar i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  border-radius: 3px;
+  transition: width .25s ease;
+}
+.reset {
+  font-family: var(--font-body);
+  font-size: .78rem;
+  color: var(--ink-soft);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: .25rem .7rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.reset:hover { color: var(--ink); border-color: var(--ink-soft); }
+
+/* ---- head ---- */
+header { padding-block: 1rem 0; }
+h1 {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: clamp(1.7rem, 6vw, 2.3rem);
+  line-height: 1.15;
+  text-wrap: balance;
+  margin: 0 0 .6rem;
+  letter-spacing: -.01em;
+}
+.dek {
+  color: var(--ink-soft);
+  font-size: 1rem;
+  margin: 0 0 1.2rem;
+  max-width: 34rem;
+}
+.dek code { font-family: var(--font-code); font-size: .9em; }
+
+/* ---- stages ---- */
+section { margin-top: 2.4rem; }
+.stage-head {
+  display: flex;
+  align-items: baseline;
+  gap: .7rem;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: .4rem;
+  margin-bottom: .25rem;
+}
+h2 {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 1.12rem;
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+}
+.when {
+  font-family: var(--font-code);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.stage-note {
+  font-size: .88rem;
+  color: var(--ink-soft);
+  margin: .7rem 0 .2rem;
+}
+
+/* ---- items ---- */
+.item {
+  display: flex;
+  gap: .75rem;
+  align-items: flex-start;
+  padding: .62rem .2rem;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+}
+.item:last-child { border-bottom: none; }
+.item input { position: absolute; opacity: 0; width: 0; height: 0; }
+.box {
+  flex: none;
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-top: .22rem;
+  border: 1.5px solid var(--ink-soft);
+  border-radius: 3px;
+  position: relative;
+  transition: background .12s, border-color .12s;
+}
+.box::after {
+  content: "";
+  position: absolute;
+  left: 4.5px; top: 1px;
+  width: 4px; height: 8px;
+  border: solid var(--surface);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0);
+  transition: transform .12s ease;
+}
+.item input:checked ~ .box { background: var(--accent); border-color: var(--accent); }
+.item input:checked ~ .box::after { transform: rotate(45deg) scale(1); }
+.item input:focus-visible ~ .box { outline: 2px solid var(--accent); outline-offset: 2px; }
+.txt { min-width: 0; }
+.item input:checked ~ .txt { color: var(--ink-soft); text-decoration: line-through; text-decoration-color: var(--line); }
+.txt small { display: block; font-size: .83rem; color: var(--ink-soft); margin-top: .1rem; }
+.item input:checked ~ .txt small { text-decoration: none; }
+code { font-family: var(--font-code); font-size: .88em; }
+
+.crit {
+  font-family: var(--font-code);
+  font-style: normal;
+  font-size: .64rem;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--alert);
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  padding: .05rem .3rem;
+  margin-left: .35rem;
+  white-space: nowrap;
+  vertical-align: .08em;
+}
+
+.done-note {
+  margin-top: 2.5rem;
+  padding: 1rem 1.1rem;
+  background: var(--accent-dim);
+  border-left: 3px solid var(--accent);
+  font-size: .92rem;
+}
+.done-note p { margin: 0; }
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font-size: .82rem;
+  color: var(--ink-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+
+.eyebrow {font-size:.72rem;letter-spacing:.18em;color:var(--accent);font-weight:600}
+#download {background:var(--accent);color:var(--paper);border:0;border-radius:8px;padding:14px 18px;font:600 .95rem var(--font-body);cursor:pointer;min-height:48px}
+#download:disabled {opacity:.65;cursor:wait}
+.help,#status {font-size:.82rem;color:var(--ink-soft);max-width:37rem}
+#status:empty {display:none}
+@media(max-width:420px){.stage-head{flex-wrap:wrap}.stage-head h2{flex-basis:100%}.when{white-space:normal}#download{width:100%}}
+</style>
+
+<div class="rail">
+  <div class="rail-inner">
+    <span class="count"><b id="n">0</b> / <span id="tot">0</span></span>
+    <span class="bar"><i id="fill"></i></span>
+    <button class="reset" id="reset" type="button">Сбросить</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<header>
+<p class="eyebrow">ЧЕК-ЛИСТ ДЛЯ АБИТУРИЕНТА</p>
+  <h1>Документы в китайский вуз</h1>
+  <p class="dek">Порядок действий от выбора университета до получения вида на жительство. Отмечайте пункты — они сохранятся в этом браузере на этом устройстве.</p>
+<div class="actions"><button id="download" type="button">Скачать PDF с моими отметками</button></div>
+<p class="help">PDF сохранит галочки на момент скачивания. После изменения списка скачайте его заново. В другом браузере или после очистки данных отметки не восстановятся.</p>
+<p id="status" role="status" aria-live="polite"></p>
+</header>
+
+<section>
+  <div class="stage-head"><h2>Выбор вуза и подача</h2><span class="when">за 6–8 мес.</span></div>
+  <label class="item"><input type="checkbox" id="a1"><span class="box"></span><span class="txt">Выбраны 4–6 университетов<small>Дедлайны выписаны с официальных сайтов — у каждого вуза они свои</small></span></label>
+  <label class="item"><input type="checkbox" id="a2"><span class="box"></span><span class="txt">Загранпаспорт действует минимум год от начала учёбы</span></label>
+  <label class="item"><input type="checkbox" id="a3"><span class="box"></span><span class="txt">Нотариальный перевод аттестата готов<span class="crit">важно</span><small>Делать в России: из Китая долго и дорого. Апостиль — только если его запросит вуз</small></span></label>
+  <label class="item"><input type="checkbox" id="a4"><span class="box"></span><span class="txt">Справка об отсутствии судимости получена</span></label>
+  <label class="item"><input type="checkbox" id="a5"><span class="box"></span><span class="txt">Анкета подана в вуз</span></label>
+</section>
+
+<section>
+  <div class="stage-head"><h2>После зачисления</h2><span class="when">за 3–4 мес.</span></div>
+  <label class="item"><input type="checkbox" id="b1"><span class="box"></span><span class="txt">Letter of Admission получен<small>Вуз присылает на почту скан с подписью и печатью — его и распечатываете. Понадобится для визы и на регистрации</small></span></label>
+  <label class="item"><input type="checkbox" id="b2"><span class="box"></span><span class="txt">Форма <code>JW202</code> скачана<small>studyinchina.edu.cn → Visa Application → Electronic Certificate Download. Вуз её не присылает</small></span></label>
+  <label class="item"><input type="checkbox" id="b3"><span class="box"></span><span class="txt">Данные в <code>JW202</code> совпадают с паспортом<small>Имя, номер и email вводятся ровно как в заявке, иначе система не найдёт запись</small></span></label>
+  <label class="item"><input type="checkbox" id="b4"><span class="box"></span><span class="txt">Жильё согласовано с куратором<small>Подтверждение в переписке, до покупки билетов</small></span></label>
+</section>
+
+<section>
+  <div class="stage-head"><h2>Медосмотр</h2><span class="when">за 2–3 мес.</span></div>
+  <p class="stage-note">Справка действует 6 месяцев — не проходите слишком рано.</p>
+  <label class="item"><input type="checkbox" id="c1"><span class="box"></span><span class="txt">Форма <code>外国人体格检查表</code> распечатана</span></label>
+  <label class="item"><input type="checkbox" id="c2"><span class="box"></span><span class="txt">Все врачи пройдены, пункты заполнены<small>Подпись врача, печать больницы, фото с печатью, дата</small></span></label>
+  <label class="item"><input type="checkbox" id="c3"><span class="box"></span><span class="txt">Оригиналы всех бланков анализов на руках<small>Не копии</small></span></label>
+  <label class="item"><input type="checkbox" id="c4"><span class="box"></span><span class="txt">Нотариальный перевод на английский — формы и каждого бланка<span class="crit">важно</span><small>Бланки на русском в Китае не примут, анализы придётся пересдавать. Без верификации не дадут вид на жительство</small></span></label>
+</section>
+
+<section>
+  <div class="stage-head"><h2>Если ребёнку нет 18</h2><span class="when">вместе с визой</span></div>
+  <p class="stage-note">Без этих документов визовый центр вернёт анкету на доработку — это минус неделя.</p>
+  <label class="item"><input type="checkbox" id="d1"><span class="box"></span><span class="txt">Свидетельство о рождении</span></label>
+  <label class="item"><input type="checkbox" id="d2"><span class="box"></span><span class="txt">Нотариальное согласие на выезд<span class="crit">важно</span><small>Срок в нём не может выходить за дату 18-летия — дальше оно не действует</small></span></label>
+  <label class="item"><input type="checkbox" id="d3"><span class="box"></span><span class="txt">Копии паспортов обоих родителей</span></label>
+  <label class="item"><input type="checkbox" id="d4"><span class="box"></span><span class="txt">Если летит с родителем — совместные билеты и его загранпаспорт</span></label>
+  <label class="item"><input type="checkbox" id="d5"><span class="box"></span><span class="txt">У вуза уточнено, нужен ли опекун в Китае</span></label>
+  <label class="item"><input type="checkbox" id="d6"><span class="box"></span><span class="txt">Доверенность от ребёнка на родителя оформлена<span class="crit">важно</span><small>Только пока ему нет 18. После дня рождения родство прав не даёт, и доверенность придётся делать через консульство</small></span></label>
+</section>
+
+<section>
+  <div class="stage-head"><h2>Виза X1</h2><span class="when">за 1–2 мес.</span></div>
+  <label class="item"><input type="checkbox" id="e1"><span class="box"></span><span class="txt">Анкета заполнена на consular.mfa.gov.cn<small>Только на английском или китайском</small></span></label>
+  <label class="item"><input type="checkbox" id="e2"><span class="box"></span><span class="txt">Город пребывания выбран с правильной провинцией<small>В списке попадаются одинаковые названия городов из разных провинций — сверьтесь с адресом вуза</small></span></label>
+  <label class="item"><input type="checkbox" id="e3"><span class="box"></span><span class="txt">Приглашающая сторона — университет<small>С его адресом, телефоном и почтой приёмной комиссии</small></span></label>
+  <label class="item"><input type="checkbox" id="e4"><span class="box"></span><span class="txt">Анкета прошла проверку<small>Пока статус «Under review», записаться на подачу нельзя</small></span></label>
+  <label class="item"><input type="checkbox" id="e5"><span class="box"></span><span class="txt">Запись в визовый центр получена</span></label>
+  <label class="item"><input type="checkbox" id="e6"><span class="box"></span><span class="txt">Документы поданы и оплачены</span></label>
+  <label class="item"><input type="checkbox" id="e7"><span class="box"></span><span class="txt">Виза на руках</span></label>
+</section>
+
+<section>
+  <div class="stage-head"><h2>Воинский учёт</h2><span class="when">до вылета</span></div>
+  <label class="item"><input type="checkbox" id="f1"><span class="box"></span><span class="txt">В военкомат позвонили, список документов узнали<small>Практика в регионах отличается</small></span></label>
+  <label class="item"><input type="checkbox" id="f2"><span class="box"></span><span class="txt">Снятие с учёта оформлено лично<small>Через Госуслуги вопрос не закрывается: приписное сдаётся на месте</small></span></label>
+</section>
+
+<section>
+  <div class="stage-head"><h2>Перед вылетом</h2><span class="when">за 2 недели</span></div>
+  <label class="item"><input type="checkbox" id="g1"><span class="box"></span><span class="txt">Билеты куплены <em>после</em> получения визы<span class="crit">важно</span><small>Сроки легко уезжают: возврат анкеты на доработку сдвигает всю цепочку</small></span></label>
+  <label class="item"><input type="checkbox" id="g2"><span class="box"></span><span class="txt">Дата въезда не раньше разрешённой<small>Она указана в письме вуза</small></span></label>
+  <label class="item"><input type="checkbox" id="g3"><span class="box"></span><span class="txt">Alipay настроен или есть наличные юани<small>Чем платить в первые дни</small></span></label>
+  <label class="item"><input type="checkbox" id="g4"><span class="box"></span><span class="txt">VPN установлен<small>Google, WhatsApp, Instagram, YouTube в Китае не работают. Поставить потом будет сложнее</small></span></label>
+  <label class="item"><input type="checkbox" id="g5"><span class="box"></span><span class="txt">WeChat установлен, куратор добавлен</span></label>
+  <label class="item"><input type="checkbox" id="g6"><span class="box"></span><span class="txt">Отель на первые дни забронирован</span></label>
+  <label class="item"><input type="checkbox" id="g8"><span class="box"></span><span class="txt">Фото на документы распечатаны<small>Размеры смотрите в письме своего вуза, они отличаются</small></span></label>
+</section>
+
+<section>
+  <div class="stage-head"><h2>Первая неделя в Китае</h2><span class="when">по приезде</span></div>
+  <label class="item"><input type="checkbox" id="h1"><span class="box"></span><span class="txt">Регистрация по месту проживания оформлена<small>Сделать сразу по приезде</small></span></label>
+  <label class="item"><input type="checkbox" id="h2"><span class="box"></span><span class="txt">Справка из полиции сохранена<small>Понадобится при оформлении вида на жительство</small></span></label>
+  <label class="item"><input type="checkbox" id="h3"><span class="box"></span><span class="txt">Регистрация в вузе пройдена</span></label>
+  <label class="item"><input type="checkbox" id="h4"><span class="box"></span><span class="txt">Страховка оплачена<small>Обязательна, покупается в Китае</small></span></label>
+  <label class="item"><input type="checkbox" id="h5"><span class="box"></span><span class="txt">SIM-карта оформлена<small>Нужен паспорт с визой. Несовершеннолетнему может понадобиться взрослый</small></span></label>
+  <label class="item"><input type="checkbox" id="h7"><span class="box"></span><span class="txt">Студенческий и карта питания получены</span></label>
+</section>
+
+<section>
+  <div class="stage-head"><h2>Вид на жительство</h2><span class="when">30 дней с въезда</span></div>
+  <p class="stage-note">Жёсткий срок. Пропустите — это нарушение миграционного режима.</p>
+  <label class="item"><input type="checkbox" id="i1"><span class="box"></span><span class="txt">Запись в <code>国际旅行卫生保健中心</code> получена<small>Только уполномоченный центр. Обычная больница или медпункт не подойдут</small></span></label>
+  <label class="item"><input type="checkbox" id="i2"><span class="box"></span><span class="txt">Верификация медосмотра пройдена<small>Приходить натощак</small></span></label>
+  <label class="item"><input type="checkbox" id="i3"><span class="box"></span><span class="txt">Документы на ВНЖ поданы<span class="crit">важно</span></span></label>
+  <label class="item"><input type="checkbox" id="i4"><span class="box"></span><span class="txt"><code>居留许可</code> получен</span></label>
+</section>
+
+<div class="done-note">
+  <p id="tail">Отметьте пункты по мере готовности — страницу можно закрыть и вернуться позже.</p>
+</div>
+
+<footer>
+  Составлено по личному опыту поступления в один конкретный вуз осенью 2026 года. У разных университетов требования и суммы отличаются — сверяйтесь с письмом своего вуза.
+</footer>
+
+</div>
+
+<script src="assets/pdf-lib.min.js"></script>
+<script src="assets/export.js"></script>
+<script>
+(function () {
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.item input'));
+  var KEY = 'cn-checklist-v1';
+  var nEl = document.getElementById('n');
+  var totEl = document.getElementById('tot');
+  var fill = document.getElementById('fill');
+  var tail = document.getElementById('tail');
+  totEl.textContent = boxes.length;
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (!raw) return;
+      var done = JSON.parse(raw) || [];
+      boxes.forEach(function (b) { if (done.indexOf(b.id) > -1) b.checked = true; });
+    } catch (e) { document.getElementById('status').textContent = 'Браузер не разрешает сохранять отметки. Скачайте PDF, чтобы сохранить результат.'; }
+  }
+  function save() {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(
+        boxes.filter(function (b) { return b.checked; }).map(function (b) { return b.id; })
+      ));
+    } catch (e) { document.getElementById('status').textContent = 'Браузер не разрешает сохранять отметки. Скачайте PDF, чтобы сохранить результат.'; }
+  }
+  function paint() {
+    var n = boxes.filter(function (b) { return b.checked; }).length;
+    nEl.textContent = n;
+    fill.style.width = (boxes.length ? (n / boxes.length * 100) : 0) + '%';
+    tail.textContent = n === boxes.length
+      ? 'Всё готово. Лёгкой дороги.'
+      : 'Отметьте пункты по мере готовности — страницу можно закрыть и вернуться позже.';
+  }
+
+  boxes.forEach(function (b) {
+    b.addEventListener('change', function () { save(); paint(); });
+  });
+  document.getElementById('reset').addEventListener('click', function () {
+    if (!window.confirm('Сбросить все отметки?')) return;
+    boxes.forEach(function (b) { b.checked = false; });
+    save(); paint();
+  });
+
+  document.getElementById('download').addEventListener('click', async function () {
+    var button = this;
+    var status = document.getElementById('status');
+    var selected = boxes.filter(function (b) { return b.checked; }).map(function (b) { return b.id; });
+    button.disabled = true;
+    status.textContent = 'Готовим PDF…';
+    try {
+      var response = await fetch('assets/checklist.pdf');
+      if (!response.ok) throw new Error('PDF unavailable');
+      var bytes = await createChecklistPdf(await response.arrayBuffer(), selected);
+      var url = URL.createObjectURL(new Blob([bytes], {type: 'application/pdf'}));
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'china-checklist-' + selected.length + '-of-' + boxes.length + '.pdf';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
+      status.textContent = 'PDF подготовлен: ' + selected.length + ' из ' + boxes.length + ' пунктов отмечено. Если файл открылся во вкладке, сохраните его через меню браузера.';
+    } catch (e) {
+      status.textContent = 'Не удалось скачать PDF. Проверьте интернет и повторите. Если ссылка открыта внутри MAX, попробуйте открыть её в обычном браузере.';
+    } finally { button.disabled = false; }
+  });
+  load();
+  paint();
+})();
+</script>
+
+</body></html>
