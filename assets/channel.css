@@ -81,3 +81,6 @@ h1{font-size:clamp(34px,4vw,46px);margin-bottom:16px}
 
 .hero{grid-template-columns:minmax(0,1fr) 360px;gap:24px}.hero-art{max-width:360px}.hero-art p{display:none}
 @media(max-width:650px){.hero{grid-template-columns:minmax(0,1fr) 160px;gap:10px}.hero-art{max-width:160px}.hero h1{font-size:clamp(24px,6vw,34px)}}
+
+/* Exclude the neighbouring passport at the left edge of this sprite cell. */
+.stage-cat-registration{clip-path:inset(0 0 0 7%)}
