@@ -8,7 +8,8 @@ async function createChecklistPdf(template, selected) {
     const point = CHECKLIST_POSITIONS[id];
     if (!point) continue;
     const {page, x, y} = point;
-    const color = PDFLib.rgb(0.12, 0.34, 0.27);
+    pages[page].drawRectangle({x:x-0.4,y:y-0.4,width:10,height:10,color:PDFLib.rgb(0.12,0.34,0.27)});
+    const color = PDFLib.rgb(1, 1, 1);
     pages[page].drawLine({start:{x:x+1.5,y:y+4.4},end:{x:x+3.7,y:y+2},thickness:1.5,color});
     pages[page].drawLine({start:{x:x+3.7,y:y+2},end:{x:x+7.8,y:y+7.5},thickness:1.5,color});
   }
