@@ -97,3 +97,5 @@ h1{font-size:clamp(34px,4vw,46px);margin-bottom:16px}
 .hero-art{grid-column:1;grid-row:3}
 .hero h1{grid-column:2;grid-row:3}
 }
+
+.channel-contacts{margin-top:32px;padding:26px;background:var(--surface);border:1px solid var(--line);border-radius:6px;display:flex;align-items:center;justify-content:space-between;gap:22px}.channel-contacts h2{margin:0 0 12px}.contact-phone{color:var(--accent);font-size:21px;font-weight:600;text-decoration:none}.contact-phone:hover{text-decoration:underline}.channel-button{display:inline-block;background:var(--accent);color:#fff9ed;padding:15px 20px;border-radius:5px;text-decoration:none;font-weight:600;text-align:center}.channel-button:hover{background:#174b3e}@media(max-width:650px){.channel-contacts{align-items:stretch;flex-direction:column;padding:22px}.contact-phone{font-size:20px}}
