@@ -57,3 +57,24 @@ section{padding:20px 17px;margin-top:15px}.stage-head{flex-wrap:wrap;gap:10px}.s
 .stage-head{position:relative;min-height:94px;padding-right:110px}
 .stage-cat{position:absolute;right:0;top:50%;transform:translateY(-50%);width:94px;height:94px;background-image:url('stage-cats.png');background-size:300% 300%;background-repeat:no-repeat;pointer-events:none}
 @media(max-width:650px){.stage-head{padding-right:76px;min-height:82px;gap:8px}.stage-cat{width:72px;height:72px}.stage-head h2{font-size:18px;flex-basis:calc(100% - 45px)}.when{margin-left:0;font-size:9px}}
+/* Compact introductory block. */
+.hero{grid-template-columns:minmax(0,1fr) 290px;gap:28px;padding:26px 0 24px}
+.brand{margin-bottom:18px}
+.hero .eyebrow{margin-bottom:9px}
+h1{font-size:clamp(34px,4vw,46px);margin-bottom:16px}
+.dek{font-size:14px;line-height:1.5;max-width:510px;margin-bottom:16px}
+.hero-art{max-width:290px;width:100%}
+.hero-art p{font-size:11px;margin-top:6px}
+.route-intro{margin:22px 0 16px}
+@media(max-width:650px){
+.hero{grid-template-columns:minmax(0,1fr) 118px;gap:12px;padding:22px 0 20px;align-items:center}
+.hero-copy{display:contents}
+.brand{grid-column:1/-1;margin:0 0 3px;font-size:10px}
+.hero .eyebrow{grid-column:1/-1;margin:0;font-size:8px}
+.hero h1{grid-column:1;grid-row:3;font-size:clamp(26px,6.8vw,39px);line-height:1.08;margin:0;align-self:center}
+.hero-art{grid-column:2;grid-row:3;max-width:118px;margin:0;align-self:center}
+.hero-art p{display:none}
+.hero .dek{grid-column:1/-1;grid-row:4;margin:2px 0 0;font-size:13px;line-height:1.5}
+.hero-meta{grid-column:1/-1;grid-row:5;gap:6px}
+.hero-meta span{font-size:10px;padding:5px 7px}
+}
