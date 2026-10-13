@@ -250,7 +250,7 @@ footer {
 @media(max-width:420px){.stage-head{flex-wrap:wrap}.stage-head h2{flex-basis:100%}.when{white-space:normal}#download{width:100%}}
 </style>
 
-<link rel="stylesheet" href="assets/channel.css?v=14">
+<link rel="stylesheet" href="assets/channel.css?v=15">
 <div class="rail">
   <div class="rail-inner">
     <span class="rail-label">Ваш прогресс</span>
@@ -263,13 +263,13 @@ footer {
 <div class="wrap">
 
 <header class="hero">
-<img class="hero-stamp" src="assets/channel-stamp.png" alt="Печать Китай без паники, +7 (987) 292-20-00" width="1200" height="1200">
+<img class="hero-stamp" src="assets/channel-stamp.webp" alt="Печать Китай без паники, +7 (987) 292-20-00" width="1200" height="1200">
 <div class="hero-copy"><p class="brand">КИТАЙ БЕЗ ПАНИКИ</p>
 <p class="eyebrow">ВАШ МАРШРУТ ПОСТУПЛЕНИЯ</p>
   <h1>В китайский вуз.<br><span>Шаг за шагом.</span></h1>
   <p class="dek">Порядок действий от выбора университета до получения вида на жительство. Отмечайте пункты — они сохранятся в этом браузере на этом устройстве.</p>
 <div class="hero-meta"><span>9 этапов</span><span>45 пунктов</span><span>Ваш личный прогресс</span></div></div>
-<div class="hero-art"><img src="assets/guide-ready-cat.png" alt="Кот в красном кардигане с папкой, чек-листом и чемоданом" width="1254" height="1254"><p>Документы соберём.<br>Ничего не забудем.</p></div>
+<div class="hero-art"><img src="assets/guide-ready-cat.webp" alt="Кот в красном кардигане с папкой, чек-листом и чемоданом" width="1254" height="1254" fetchpriority="high" decoding="async"><p>Документы соберём.<br>Ничего не забудем.</p></div>
 </header>
 <div class="route-intro"><span>ЧЕК-ЛИСТ ДЛЯ АБИТУРИЕНТА</span><span>От первой заявки до ВНЖ ↘</span></div>
 
@@ -440,14 +440,14 @@ footer {
       await Promise.all([
         loadPdfScript('assets/pdf-lib.min.js', function () { return !!window.PDFLib; }),
         loadPdfScript('assets/template.js?v=3', function () { return !!window.CHECKLIST_TEMPLATE_BASE64; }),
-        loadPdfScript('assets/export.js?v=7', function () { return typeof window.createChecklistPdf === 'function'; })
+        loadPdfScript('assets/export.js?v=8', function () { return typeof window.createChecklistPdf === 'function'; })
       ]);
       status.textContent = 'Добавляем ваши отметки…';
       var bytes = await createChecklistPdf(window.CHECKLIST_TEMPLATE_BASE64, selected);
       var url = URL.createObjectURL(new Blob([bytes], {type: 'application/pdf'}));
       var link = document.createElement('a');
       link.href = url;
-      link.download = 'china-checklist-' + selected.length + '-of-' + boxes.length + '.pdf';
+      link.download = 'china-checklist-editable-v2-' + selected.length + '-of-' + boxes.length + '.pdf';
       document.body.appendChild(link);
       link.click();
       link.remove();

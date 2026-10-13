@@ -23,7 +23,7 @@ async function createChecklistPdf(template, selected) {
     const {page, x, y} = point;
     const field = form.createCheckBox(id);
     field.addToPage(pages[page], {
-      x: x - 0.4, y: y - 0.4, width: 10, height: 10,
+      x: x - 2, y: y - 2, width: 14, height: 14,
       borderWidth: 0.8, borderColor: PDFLib.rgb(0.12, 0.34, 0.27),
       backgroundColor: PDFLib.rgb(1, 1, 1),
       textColor: PDFLib.rgb(0.12, 0.34, 0.27),
@@ -32,5 +32,23 @@ async function createChecklistPdf(template, selected) {
     else field.uncheck();
   }
   form.updateFieldAppearances();
-  return await pdf.save();
+  // Use single-dictionary checkbox fields: the form and page reference
+  // the same widget, with explicit editable flags and saved appearances.
+  const fieldRefs = [];
+  for (const field of form.getFields()) {
+    const fieldDict = field.acroField.dict;
+    const kids = fieldDict.lookup(PDFLib.PDFName.of('Kids'), PDFLib.PDFArray);
+    const widgetRef = kids.get(0);
+    const widget = pdf.context.lookup(widgetRef);
+    for (const name of ['FT', 'T', 'V', 'DA']) {
+      const value = fieldDict.get(PDFLib.PDFName.of(name));
+      if (value) widget.set(PDFLib.PDFName.of(name), value);
+    }
+    widget.set(PDFLib.PDFName.of('Ff'), PDFLib.PDFNumber.of(0));
+    widget.delete(PDFLib.PDFName.of('Parent'));
+    fieldRefs.push(widgetRef);
+  }
+  form.acroForm.dict.set(PDFLib.PDFName.of('Fields'), pdf.context.obj(fieldRefs));
+  form.acroForm.dict.set(PDFLib.PDFName.of('NeedAppearances'), PDFLib.PDFBool.False);
+  return await pdf.save({updateFieldAppearances: false, useObjectStreams: false});
 }

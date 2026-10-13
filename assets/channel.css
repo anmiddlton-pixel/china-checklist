@@ -55,7 +55,7 @@ section{padding:20px 17px;margin-top:15px}.stage-head{flex-wrap:wrap;gap:10px}.s
 /* Transparent hero and topic-specific character poses. */
 .hero-art img{border-radius:0;box-shadow:none}
 .stage-head{position:relative;min-height:94px;padding-right:110px}
-.stage-cat{position:absolute;right:0;top:50%;transform:translateY(-50%);width:94px;height:94px;background-image:url('stage-cats.png');background-size:300% 300%;background-repeat:no-repeat;pointer-events:none}
+.stage-cat{position:absolute;right:0;top:50%;transform:translateY(-50%);width:94px;height:94px;background-image:url('stage-cats.webp');background-size:300% 300%;background-repeat:no-repeat;pointer-events:none}
 @media(max-width:650px){.stage-head{padding-right:76px;min-height:82px;gap:8px}.stage-cat{width:72px;height:72px}.stage-head h2{font-size:18px;flex-basis:calc(100% - 45px)}.when{margin-left:0;font-size:9px}}
 /* Compact introductory block. */
 .hero{grid-template-columns:minmax(0,1fr) 290px;gap:28px;padding:26px 0 24px}
