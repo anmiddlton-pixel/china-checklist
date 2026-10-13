@@ -372,7 +372,7 @@ footer {
 </div>
 
 <script src="assets/pdf-lib.min.js"></script>
-<script src="assets/export.js"></script>
+<script src="assets/export.js?v=2"></script>
 <script>
 (function () {
   var boxes = Array.prototype.slice.call(document.querySelectorAll('.item input'));
@@ -430,10 +430,13 @@ footer {
       var link = document.createElement('a');
       link.href = url;
       link.download = 'china-checklist-' + selected.length + '-of-' + boxes.length + '.pdf';
-      document.body.appendChild(link);
+      var previous = document.getElementById('ready-pdf');
+      if (previous) { URL.revokeObjectURL(previous.href); previous.remove(); }
+      link.id = 'ready-pdf';
+      link.textContent = 'Сохранить готовый PDF — отметок: ' + selected.length + ' из ' + boxes.length;
+      link.style.cssText = 'display:block;padding:16px;margin-top:16px;background:#235c4e;color:#fff9ed;border-radius:6px;font-weight:600;text-align:center';
+      status.before(link);
       link.click();
-      link.remove();
-      setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
       status.textContent = 'PDF подготовлен: ' + selected.length + ' из ' + boxes.length + ' пунктов отмечено. Если файл открылся во вкладке, сохраните его через меню браузера.';
     } catch (e) {
       status.textContent = 'Не удалось скачать PDF. Проверьте интернет и повторите. Если ссылка открыта внутри MAX, попробуйте открыть её в обычном браузере.';

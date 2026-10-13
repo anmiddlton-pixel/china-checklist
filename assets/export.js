@@ -3,6 +3,7 @@ const CHECKLIST_POSITIONS = {"a1": {"page": 0, "x": 51.42362, "y": 641.8331}, "a
 async function createChecklistPdf(template, selected) {
   const pdf = await PDFLib.PDFDocument.load(template);
   const pages = pdf.getPages();
+  pdf.setTitle('Checklist — ' + selected.length + ' / 45 — ' + new Date().toISOString());
   for (const id of new Set(selected)) {
     const point = CHECKLIST_POSITIONS[id];
     if (!point) continue;
