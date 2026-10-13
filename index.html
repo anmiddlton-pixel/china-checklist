@@ -1,5 +1,6 @@
-<!doctype html><html lang="ru"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Документы в китайский вуз</title>
+<!doctype html><html lang="ru" data-theme="light"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Чек-лист поступления — Китай без паники</title>
+<meta name="description" content="45 шагов от выбора китайского вуза до вида на жительство. Сохраняйте прогресс и скачивайте PDF со своими отметками.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@600&display=swap">
 <style>
 /* Layout: single reading column, stages stacked as a dossier; sticky progress rail on top */
@@ -249,8 +250,10 @@ footer {
 @media(max-width:420px){.stage-head{flex-wrap:wrap}.stage-head h2{flex-basis:100%}.when{white-space:normal}#download{width:100%}}
 </style>
 
+<link rel="stylesheet" href="assets/channel.css">
 <div class="rail">
   <div class="rail-inner">
+    <span class="rail-label">Ваш прогресс</span>
     <span class="count"><b id="n">0</b> / <span id="tot">0</span></span>
     <span class="bar"><i id="fill"></i></span>
     <button class="reset" id="reset" type="button">Сбросить</button>
@@ -259,11 +262,15 @@ footer {
 
 <div class="wrap">
 
-<header>
-<p class="eyebrow">ЧЕК-ЛИСТ ДЛЯ АБИТУРИЕНТА</p>
-  <h1>Документы в китайский вуз</h1>
+<header class="hero">
+<div class="hero-copy"><p class="brand">КИТАЙ БЕЗ ПАНИКИ</p>
+<p class="eyebrow">ВАШ МАРШРУТ ПОСТУПЛЕНИЯ</p>
+  <h1>В китайский вуз.<br><span>Шаг за шагом.</span></h1>
   <p class="dek">Порядок действий от выбора университета до получения вида на жительство. Отмечайте пункты — они сохранятся в этом браузере на этом устройстве.</p>
+<div class="hero-meta"><span>9 этапов</span><span>45 пунктов</span><span>Ваш личный прогресс</span></div></div>
+<div class="hero-art"><img src="assets/channel-cat.png" alt="Кот в очках и красном кардигане — персонаж канала Китай без паники" width="1254" height="1254"><p>Документы соберём.<br>Ничего не забудем.</p></div>
 </header>
+<div class="route-intro"><span>ЧЕК-ЛИСТ ДЛЯ АБИТУРИЕНТА</span><span>От первой заявки до ВНЖ ↘</span></div>
 
 <section>
   <div class="stage-head"><h2>Выбор вуза и подача</h2><span class="when">за 6–8 мес.</span></div>
@@ -349,6 +356,7 @@ footer {
   <label class="item"><input type="checkbox" id="i4"><span class="box"></span><span class="txt"><code>居留许可</code> получен</span></label>
 </section>
 
+<div class="download-heading"><p class="eyebrow">СОХРАНИТЕ СВОЙ РЕЗУЛЬТАТ</p><h2>Всё под рукой.<br>Даже на бумаге.</h2></div>
 <div class="actions"><button id="download" type="button">Скачать PDF с моими отметками</button></div>
 <p class="help">PDF сохранит галочки на момент скачивания. После изменения списка скачайте его заново. В другом браузере или после очистки данных отметки не восстановятся.</p>
 <p id="status" role="status" aria-live="polite"></p>
