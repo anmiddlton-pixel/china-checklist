@@ -376,9 +376,6 @@ footer {
 
 </div>
 
-<script src="assets/pdf-lib.min.js"></script>
-<script src="assets/template.js?v=2"></script>
-<script src="assets/export.js?v=7"></script>
 <script>
 (function () {
   var boxes = Array.prototype.slice.call(document.querySelectorAll('.item input'));
@@ -422,13 +419,30 @@ footer {
     save(); paint();
   });
 
+  function loadPdfScript(src, isReady) {
+    if (isReady()) return Promise.resolve();
+    return new Promise(function (resolve, reject) {
+      var script = document.createElement('script');
+      var timeout = setTimeout(function () { script.remove(); reject(new Error('Download timed out')); }, 90000);
+      script.src = src;
+      script.onload = function () { clearTimeout(timeout); if (isReady()) resolve(); else reject(new Error('Resource unavailable')); };
+      script.onerror = function () { clearTimeout(timeout); script.remove(); reject(new Error('Network error')); };
+      document.head.appendChild(script);
+    });
+  }
   document.getElementById('download').addEventListener('click', async function () {
     var button = this;
     var status = document.getElementById('status');
     var selected = boxes.filter(function (b) { return b.checked; }).map(function (b) { return b.id; });
     button.disabled = true;
-    status.textContent = 'Готовим PDF…';
+    status.textContent = 'Загружаем оформление PDF… При первом скачивании это может занять немного времени.';
     try {
+      await Promise.all([
+        loadPdfScript('assets/pdf-lib.min.js', function () { return !!window.PDFLib; }),
+        loadPdfScript('assets/template.js?v=3', function () { return !!window.CHECKLIST_TEMPLATE_BASE64; }),
+        loadPdfScript('assets/export.js?v=7', function () { return typeof window.createChecklistPdf === 'function'; })
+      ]);
+      status.textContent = 'Добавляем ваши отметки…';
       var bytes = await createChecklistPdf(window.CHECKLIST_TEMPLATE_BASE64, selected);
       var url = URL.createObjectURL(new Blob([bytes], {type: 'application/pdf'}));
       var link = document.createElement('a');
