@@ -102,3 +102,9 @@ h1{font-size:clamp(34px,4vw,46px);margin-bottom:16px}
 
 .hero{position:relative}.hero-stamp{position:absolute;right:0;top:14px;width:112px;height:112px;object-fit:contain;transform:rotate(9deg);pointer-events:none}.hero-copy .brand{padding-right:112px}.hero-copy .eyebrow{padding-right:112px}
 @media(max-width:650px){.hero-stamp{width:72px;height:72px;top:10px;right:0}.hero .brand,.hero .eyebrow{padding-right:82px}.hero .eyebrow{min-height:24px}}
+/* Larger checklist text and controls for comfortable reading. */
+.txt{font-size:17px;line-height:1.55}
+.txt small{font-size:14px;line-height:1.55}
+.box{width:24px;height:24px;margin-top:2px}
+.box:after{left:7px;top:3px;width:6px;height:11px}
+@media(max-width:650px){.txt{font-size:16px}.txt small{font-size:14px}}
