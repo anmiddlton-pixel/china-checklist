@@ -51,3 +51,9 @@ section{padding:20px 17px;margin-top:15px}.stage-head{flex-wrap:wrap;gap:10px}.s
 .hero-art img{border-radius:12px;box-shadow:0 8px 28px #50371518}
 .hero-art p{margin-top:12px}
 @media(max-width:650px){.hero-art{max-width:340px;width:100%;transform:none}}
+
+/* Transparent hero and topic-specific character poses. */
+.hero-art img{border-radius:0;box-shadow:none}
+.stage-head{position:relative;min-height:94px;padding-right:110px}
+.stage-cat{position:absolute;right:0;top:50%;transform:translateY(-50%);width:94px;height:94px;background-image:url('stage-cats.png');background-size:300% 300%;background-repeat:no-repeat;pointer-events:none}
+@media(max-width:650px){.stage-head{padding-right:76px;min-height:82px;gap:8px}.stage-cat{width:72px;height:72px}.stage-head h2{font-size:18px;flex-basis:calc(100% - 45px)}.when{margin-left:0;font-size:9px}}
