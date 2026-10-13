@@ -44,3 +44,10 @@ h1{font-size:43px}.dek{font-size:14px;max-width:none}.hero-art{max-width:220px;j
 .hero-art p{font-size:11px}.route-intro{font-size:9px;margin-top:28px;align-items:start}.route-intro span:last-child{max-width:110px;text-align:right;letter-spacing:0}
 section{padding:20px 17px;margin-top:15px}.stage-head{flex-wrap:wrap;gap:10px}.stage-head h2{font-size:20px;flex-basis:calc(100% - 54px)}.stage-head:before{width:34px;height:34px;font-size:13px}.when{margin-left:44px;font-size:9px}.txt{font-size:14px}.txt small{font-size:12px}.item{gap:12px;padding:13px 0}.download-heading h2{font-size:29px}#download{width:100%;font-size:13px;padding:16px 10px}
 }
+
+/* Selected guide illustration: packing documents. */
+.hero-art{max-width:430px;transform:none;padding:0;background:transparent;border:0;box-shadow:none}
+.hero-art:before{display:none}
+.hero-art img{border-radius:12px;box-shadow:0 8px 28px #50371518}
+.hero-art p{margin-top:12px}
+@media(max-width:650px){.hero-art{max-width:340px;width:100%;transform:none}}
